@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+        code { font-family: monospace; color: #c7254e; background: #f9f2f4; padding: 2px 4px; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <h1>📄 Lema AI Users Service API</h1>
+    <div id="markdown-content">Loading...</div>
+
+    <script>
+        async function loadMarkdown() {
+            const response = await fetch("/docs/raw");
+            const text = await response.text();
+            const converter = new showdown.Converter({ emoji: true, tables: true }); // ✅ Enable tables
+            document.getElementById("markdown-content").innerHTML = converter.makeHtml(text);
+        }
+        loadMarkdown();
+    </script>
+</body>
+</html>
