@@ -68,7 +68,7 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 	if config.EnvConfig.APP_ENV == config.ServerEnvironmentDevelopment {
 		// Simulate network delays
 		// Slow the API down by 1 second
-		time.Sleep(2 * time.Second)
+		time.Sleep(1 * time.Second)
 	}
 
 	w.WriteHeader(http.StatusCreated)
