@@ -46,6 +46,12 @@ func getAPIDocs(w http.ResponseWriter, r *http.Request) {
 	w.Write(data)
 }
 
+// Health check handler
+func healthCheck(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("OK"))
+}
+
 // Logging middleware to track API calls and response times with color
 func loggingMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -100,6 +106,14 @@ func Setup() {
 
 	// Add logging middleware
 	r.Use(loggingMiddleware)
+
+	// Health check route
+	r.HandleFunc("/api/health-check", healthCheck).Methods("GET")
+
+	// Redirect root (/) to /api/health-check
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/api/health-check", http.StatusFound)
+	})
 
 	// User endpoints
 	r.HandleFunc("/api/users", handlers.GetUsers).Methods("GET")
