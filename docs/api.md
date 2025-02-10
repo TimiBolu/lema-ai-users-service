@@ -5,7 +5,7 @@ The Lema AI Users Service provides a RESTful API for managing users and their po
 
 **Base URL:**
 ```
-http://localhost:8000/
+http://localhost:8000/api
 ```
 
 ---
@@ -229,4 +229,3 @@ curl -X POST "http://localhost:8000/api/posts" \
            "userId": "123"
          }'
 ```
-

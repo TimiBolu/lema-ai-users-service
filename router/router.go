@@ -102,20 +102,20 @@ func Setup() {
 	r.Use(loggingMiddleware)
 
 	// User endpoints
-	r.HandleFunc("/users", handlers.GetUsers).Methods("GET")
-	r.HandleFunc("/users/count", handlers.GetUsersCount).Methods("GET")
-	r.HandleFunc("/users/{id}", handlers.GetUserByID).Methods("GET")
+	r.HandleFunc("/api/users", handlers.GetUsers).Methods("GET")
+	r.HandleFunc("/api/users/count", handlers.GetUsersCount).Methods("GET")
+	r.HandleFunc("/api/users/{id}", handlers.GetUserByID).Methods("GET")
 
 	// Post endpoints
-	r.HandleFunc("/posts", handlers.GetPostsByUser).Methods("GET")
-	r.HandleFunc("/posts", handlers.CreatePost).Methods("POST")
-	r.HandleFunc("/posts/{id}", handlers.DeletePost).Methods("DELETE")
+	r.HandleFunc("/api/posts", handlers.GetPostsByUser).Methods("GET")
+	r.HandleFunc("/api/posts", handlers.CreatePost).Methods("POST")
+	r.HandleFunc("/api/posts/{id}", handlers.DeletePost).Methods("DELETE")
 
 	// API Documentation endpoints
-	r.HandleFunc("/docs", func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc("/api/docs", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "docs/index.html")
 	})
-	r.HandleFunc("/docs/raw", getAPIDocs) // Serve raw Markdown
+	r.HandleFunc("/api/docs/raw", getAPIDocs) // Serve raw Markdown
 
 	frontendApps := config.EnvConfig.FRONTEND_APPS
 	allowedOrigins := strings.Split(frontendApps, ",")
@@ -131,8 +131,8 @@ func Setup() {
 	// Server configuration
 	port := config.EnvConfig.PORT
 	baseURL := config.EnvConfig.SERVER_BASE_URL
-	log.Printf("🚀 Server is up and running on %s:%s", baseURL, port)
-	log.Printf("📄 API Documentation available at %s:%s/docs", baseURL, port)
+	log.Printf("🚀 Server is up and running on %s:%s/api", baseURL, port)
+	log.Printf("📄 API Documentation available at %s:%s/api/docs", baseURL, port)
 
 	// Start the server with CORS
 	err := http.ListenAndServe(fmt.Sprintf(":%s", port), corsHandler)

@@ -35,6 +35,12 @@ The server will start on `localhost:8080` (or your configured port)
 
 Visit `/docs` route after starting the server to access the complete API documentation.
 
+## Frontend
+
+The backend is connected to a **React and Tailwind** based backend. You can find the frontend repository here:
+**[Lema-Ai App - Frontend](https://github.com/TimiBolu/lema-ai-app)**
+
+
 ## Development
 
 For development with hot-reload:
@@ -48,12 +54,12 @@ fresh
 
 ├── README.md
 ├── bin
-│   └── install.sh          # Installation script
+│   └── install.sh         # Installation script
 ├── config
-│   └── config.go           # Application configuration
+│   └── config.go          # Application configuration
 ├── database
-│   ├── database.go         # Database connection and setup
-│   └── seed.go             # Data seeding utilities
+│   ├── database.go        # Database connection and setup
+│   └── seed.go            # Data seeding utilities
 ├── docs
 │   ├── api.md             # API documentation in markdown
 │   └── index.html         # Interactive API documentation
@@ -61,14 +67,14 @@ fresh
 │   ├── handlers_test.go   # Handler tests
 │   ├── posts.go           # Post-related handlers
 │   └── users.go           # User-related handlers
-├── main.go                # Application entry point
+├── main.go                 # Application entry point
 ├── models
 │   ├── Address.go         # Address model
 │   ├── Post.go            # Post model
 │   └── User.go            # User model
 ├── router
 │   └── router.go          # Application routing
-└── test.db                # SQLite database file
+└── test.db                 # SQLite database file
 ```
 
 ## Testing
